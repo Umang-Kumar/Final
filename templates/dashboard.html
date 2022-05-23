@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtEasy</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/dashboard.css') }}">
+    <script src="https://kit.fontawesome.com/edd4e6a249.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+      <!-- <h1 style="text-align: center;">Admin's Dashboard</h1> -->
+        <div class="card__container">
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__header">Add a Pupil</h3>
+              <p class="card__info">Go on! Add a new member, just a clear picture and their name, preety easy if you ask me.😎</p>
+              <button onclick="window.location.href='/addUser/';" class="card__button"><h5>Add🙂</h5></button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__header">Take Attendance</h3>
+              <p class="card__info">Switches on your webcam and boom!! Let your pupils pass through. Easy Attendance.😎</p>
+              <button onclick="window.location.href='/video/';" class="card__button">Smile😊</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__header">Card 3</h3>
+              <p class="card__info">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <button class="card__button">Read now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <i class="fa-solid fa-alarm-plus"></i>
+</body>
+</html>

@@ -3,11 +3,15 @@ from flask_cors import CORS
 from flask_pymongo import PyMongo
 from werkzeug.utils import secure_filename
 import os
-
-
+from flask_socketio import SocketIO
 
 # Configure application
 app = Flask(__name__)
+CORS(app)
+app.config['SECRET_KEY'] = 'secret!'
+
+# Initializing SocketIO
+socketio = SocketIO(app, cors_allowed_origins="http://127.0.0.1:5000/")
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -30,27 +34,36 @@ try:
     mongo = PyMongo(app)
     ALLOWED_EXTENSIONS = ["png", "jpg", "jpeg"]
 
-    CORS(app)
 except:
     print("ERROR - Can't connect to db")
 
 
 ########################
-# index
+# welcome
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('welcome.html')
 
 
 ########################
-@app.route("/attend/")
+# dashboard
+@app.route('/dashboard/')
+def dashboard():
+    return render_template('dashboard.html')
+
+
+########################
+@app.route("/gallery/")
 def gallery():
-    return "Take Attendance!"
+    cursor = mongo.db.gallery.find()
+    for image in cursor:
+        print(image)
+    return render_template("gallery.html", gallery=mongo.db.gallery.find())
 
 
 ########################
 # Add a new student
-@app.route("/addUser/", methods=["GET", "POST"])
+@app.route('/addUser/', methods=['GET', 'POST'])
 def upload():
     if request.method == "POST":
         image = request.files["image"]
@@ -72,5 +85,26 @@ def upload():
     return render_template("upload.html")
 
 
+########################
+# Face-Recognition
+
+@app.route('/video/')
+def video():
+    print("SERVER STARTED")
+    return render_template('video.html')
+
+
+@socketio.on('connect')
+def test_connect():
+    print("SOCKET CONNECTED")
+
+
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    print('received my event: ' + str(json))
+
+########################
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, debug='True')
