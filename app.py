@@ -10,9 +10,6 @@ app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = 'secret!'
 
-# Initializing SocketIO
-socketio = SocketIO(app, cors_allowed_origins="http://127.0.0.1:5000/")
-
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -36,6 +33,9 @@ try:
 
 except:
     print("ERROR - Can't connect to db")
+
+# Initializing SocketIO
+socketio = SocketIO(app, async_mode=None)  # cors_allowed_origins="*"
 
 
 ########################
@@ -85,6 +85,11 @@ def upload():
     return render_template("upload.html")
 
 
+@socketio.on('user', namespace='/addUser/')
+def adduser(json):
+    print(str(json))
+
+
 ########################
 # Face-Recognition
 
@@ -94,14 +99,15 @@ def video():
     return render_template('video.html')
 
 
-@socketio.on('connect')
-def test_connect():
-    print("SOCKET CONNECTED")
+# @socketio.on('connect', namespace='/video/')
+# def test_connect():
+#     print("SOCKET CONNECTED")
 
 
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    print('received my event: ' + str(json))
+@socketio.on('my event', namespace='/video/')
+def handle_my_customevent(json):
+    print(str(json))
+
 
 ########################
 

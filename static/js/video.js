@@ -2,7 +2,7 @@
 const video = document.getElementById('video');
 
 //Connect to flask server port
-var socket = io.connect('http://127.0.0.1:5000/');
+var socket = io(namespace='/video/');
 //Join to the connect socket in Flask server to test connection
 socket.on('connect', function() {
   console.log("SOCKET CONNECTED")
@@ -35,6 +35,7 @@ function startVideo() {
     stream => video.srcObject = stream,
     err => console.error(err)
   )
+  console.log("streaming");
 }
 
 video.addEventListener('play', () => {
@@ -64,6 +65,7 @@ video.addEventListener('play', () => {
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
     //Printing the detection coordinates
         // console.log(detections);
+        // socket.send({data: detections});
       }, 100)
   }
 )

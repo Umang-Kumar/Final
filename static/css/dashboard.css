@@ -13,6 +13,17 @@
   height:100vh;
   background: #2c302d;
 }
+.header{
+  text-align: center;
+  position: relative;
+  top: 70px;
+  color: white;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
 .card {
   width: 60%;
   height: 80%;
@@ -26,7 +37,7 @@
   .card__container {
     display: grid;
     width:100%;
-    height:100%;
+    height:95vh;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-items: center;
@@ -64,21 +75,48 @@ box-shadow:  16px 16px 44px #0a0a0a,
     margin: 50px auto;
   }
 
-  @media only screen and (max-width: 768px) and (min-width: 500px){
+  @media only screen and (max-width: 770px) and (min-width: 500px){
       .card{
         width: 90%;
+      }
+      .card__info{
+        font-size: 12px;
+      }
+      .card__header{
+        font-size: 18px;
       }
   }
 
   @media only screen and (max-width: 500px) and (min-width: 300px){
     .card{
       width: 60%;
+      margin-bottom: 35px;
     }
     .card__container{
         display: flex;
         flex-direction: column;
+        margin-top: 90px;
     }
     .container{
-        height: 150vh;
+        height: 180vh;
     }
+    .card__info{
+      font-size: 11px;
+    }
+}
+
+@media only screen and (max-width: 1100px) and (min-width: 800px){
+  .card__info{
+    font-size: 14px;
+  }
+  .header{
+    font-size: 32px;
+  }
+  .card__button{
+    position: relative;
+    bottom: 20px;
+  }
+  .card{
+    width: 80%;
+  }
 }

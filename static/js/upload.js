@@ -4,6 +4,9 @@ document.querySelector("#selection").addEventListener("click", function () {
 
 const imageUpload = document.getElementById('imageUpload');
 
+//Connect to flask server port
+var socket = io(namespace='/addUser/');
+
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('http://127.0.0.1:5000/static/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('http://127.0.0.1:5000/static/models'),
@@ -33,6 +36,9 @@ async function start() {
     const detections = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors()
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
     console.log(resizedDetections);
+    socket.emit('user',{
+      data: resizedDetections
+    })
     // const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
     // results.forEach((result, i) => {
     //   const box = resizedDetections[i].detection.box
