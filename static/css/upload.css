@@ -1,6 +1,8 @@
 body{
     height:100vh;
     display:flex;
+    background: #2c302d;
+    color: white;
   }
   button {
       background-color: #0d6efd;

@@ -23,7 +23,9 @@
 body{
   margin: 0;
   padding: 0;
+  background: #2c302d;
 }
+
 .card {
   width: 60%;
   height: 80%;

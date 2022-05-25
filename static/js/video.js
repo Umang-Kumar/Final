@@ -1,6 +1,15 @@
 //Fetching Video frame from HTML
 const video = document.getElementById('video');
 
+// Fetch all facial data from backend
+function matching() {
+  fetch('/matching/').then(response => response.json()).then(function(data){
+    console.log(data);
+  })
+}
+
+matching();
+
 //Connect to flask server port
 var socket = io(namespace='/video/');
 //Join to the connect socket in Flask server to test connection
@@ -52,20 +61,18 @@ video.addEventListener('play', () => {
           .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()) //Face Detectors
           .withFaceLandmarks()  // Get cordinates of landmarks
           .withFaceExpressions();  //Get Face Expression confidence values
-        // console.log(detections[0].alignedRect)
+        
     //Send The Data to the flask Backend on each async detection
-        socket.emit( 'my event', {
-            data: detections
-        })
+        // socket.emit( 'my event', {
+        //     data: detections
+        // })
     // Resize and Display the detections on the video frame using canvas
         const resizedDetections = faceapi.resizeResults(detections, displaySize);
         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height );
         faceapi.draw.drawDetections(canvas, resizedDetections);
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-    //Printing the detection coordinates
-        // console.log(detections);
-        // socket.send({data: detections});
+        
       }, 100)
   }
 )

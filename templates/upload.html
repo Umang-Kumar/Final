@@ -23,6 +23,7 @@
           <form method="POST" enctype="multipart/form-data" class="form">
             <div class="form-group">
               <input name="image" type='file' id='imageUpload' hidden>
+              <input type="hidden" id="facialId" name="faceId">
               <div id='container'>
                 <button id="selection">Select an image</button>
                 <p>Preview</p>
@@ -30,7 +31,7 @@
               </div>
             </div>
             <div class="form-group forming-group">
-              <label for="description">Image Description</label>
+              <label for="description">Add Roll no. and Name in (12_XYZ) format</label>
               <textarea
                 class="form-control"
                 id="description"

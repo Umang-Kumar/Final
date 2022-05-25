@@ -4,8 +4,7 @@ document.querySelector("#selection").addEventListener("click", function () {
 
 const imageUpload = document.getElementById('imageUpload');
 
-//Connect to flask server port
-var socket = io(namespace='/addUser/');
+const facials = document.getElementById('facialId');
 
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('http://127.0.0.1:5000/static/models'),
@@ -26,6 +25,8 @@ async function start() {
   imageUpload.addEventListener('change', async () => {
     if (image) image.remove()
     if (canvas) canvas.remove()
+    var fname = imageUpload.files[0].name;
+    console.log(fname);
     image = await faceapi.bufferToImage(imageUpload.files[0])
     container.append(image)
     canvas = faceapi.createCanvasFromMedia(image)
@@ -35,10 +36,9 @@ async function start() {
     faceapi.matchDimensions(canvas, displaySize)
     const detections = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors()
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-    console.log(resizedDetections);
-    socket.emit('user',{
-      data: resizedDetections
-    })
+    facials.value = JSON.stringify(resizedDetections);
+    // console.log(facials.value);
+    
     // const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
     // results.forEach((result, i) => {
     //   const box = resizedDetections[i].detection.box

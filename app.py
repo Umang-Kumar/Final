@@ -68,13 +68,15 @@ def upload():
     if request.method == "POST":
         image = request.files["image"]
         description = request.form.get("description")
+        facial_description = request.form.get("faceId")
         if image and description and image.filename.split(".")[-1].lower() in ALLOWED_EXTENSIONS:
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
 
             mongo.db.gallery.insert_one({
                 "filename": filename,
-                "description": description.strip()
+                "description": description.strip(),
+                "facial_description": facial_description
             })
 
             flash("Successfully uploaded image to gallery!", "success")
@@ -85,27 +87,27 @@ def upload():
     return render_template("upload.html")
 
 
-@socketio.on('user', namespace='/addUser/')
-def adduser(json):
-    print(str(json))
-
-
 ########################
 # Face-Recognition
-
-@app.route('/video/')
+@app.route('/video/', methods=['GET'])
 def video():
     print("SERVER STARTED")
     return render_template('video.html')
 
 
-# @socketio.on('connect', namespace='/video/')
-# def test_connect():
-#     print("SOCKET CONNECTED")
+@app.route('/matching/', methods=['GET'])
+def matching():
+    ls = []
+    cursor = mongo.db.gallery.find()
+    for image in cursor:
+        ls.append([image['description'], image['facial_description']])
+        # print(ls)
+    return {"data": ls}
+
 
 
 @socketio.on('my event', namespace='/video/')
-def handle_my_customevent(json):
+def handle_my_custom_event(json):
     print(str(json))
 
 
