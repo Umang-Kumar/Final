@@ -14,3 +14,21 @@ body {
 .canvas{
   position: absolute;
 }
+
+@media screen and (min-width:350px) and (max-width:450px) {
+  #video{
+    position: absolute;
+    width: 89%;
+    left: 6%;
+    top: 0%;
+  }
+}
+
+@media screen and (min-width:300px) and (max-width:350px){
+  #video{
+    position: absolute;
+    width: 100%;
+    left: -1%;
+    top: -50px;
+  }
+}

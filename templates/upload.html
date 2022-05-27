@@ -11,27 +11,35 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-12">
-          <div class="jumbotron text-center p-4 headered">
-            <h2>Add a new Student's Image</h2>
+          <div class="jumbotron text-center p-4">
+            <h2>Add a Pupil's Image</h2>
           </div>
         </div>
-        <div class="col-lg-6 text-center big-form">
+        <div class="col-lg-6 text-center">
           {% with messages = get_flashed_messages(with_categories=true) %} {% if
           messages %} {% for category, message in messages %}
           <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
           {% endfor %} {% endif %} {% endwith %}
-          <form method="POST" enctype="multipart/form-data" class="form">
+          <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
-              <input name="image" type='file' id='imageUpload' hidden>
-              <input type="hidden" id="facialId" name="faceId">
+              <label for="image">Choose Image</label>
+              <input
+                type='file' 
+                id='file-input'
+                name="image"
+                class="form-control-file"
+                accept="image/*"
+                required
+                 hidden
+              />
               <div id='container'>
-                <button id="selection">Select an image</button>
+                <button>Select an image</button>
                 <p>Preview</p>
-                <div id='preview' style="width: 500px;"></div>
+                <img id='preview'>
               </div>
             </div>
-            <div class="form-group forming-group">
-              <label for="description">Add Roll no. and Name in (12_XYZ) format</label>
+            <div class="form-group">
+              <label for="description">Add Rollno. and Name in this format (12_ABC)</label>
               <textarea
                 class="form-control"
                 id="description"
@@ -44,7 +52,7 @@
               <button type="submit" class="btn btn-primary m-3">
                 Upload Image
               </button>
-              <a href="/dashboard/" class="btn btn-primary m-3"
+              <a href="{{ url_for('dashboard') }}" class="btn btn-primary m-3"
                 >Go Home</a
               >
             </div>
@@ -52,17 +60,10 @@
         </div>
       </div>
     </div>
-    
   </body>
-  <!--   Attaching Ajax and SocketIO -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
-  <!-- bootstarp JS -->
+    <!-- bootstarp JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <!-- Attaching face-api.js file -->
-  <script type="text/javascript" src="{{ url_for('static', filename = 'js/face-api.min.js') }}"></script>
-  <!-- Attaching our scripts -->
+    <!-- Attaching our scripts -->
   <script type="text/javascript" src="{{ url_for('static', filename = 'js/upload.js') }}"></script>
   
 </html>
