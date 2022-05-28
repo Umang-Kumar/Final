@@ -13,19 +13,6 @@
   height:100vh;
   background: #2c302d;
 }
-.header{
-  text-align: center;
-  position: relative;
-  top: 70px;
-  color: white;
-}
-
-body{
-  margin: 0;
-  padding: 0;
-  background: #2c302d;
-}
-
 .card {
   width: 60%;
   height: 80%;
@@ -39,7 +26,7 @@ body{
   .card__container {
     display: grid;
     width:100%;
-    height:95vh;
+    height:100%;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-items: center;
@@ -53,10 +40,13 @@ body{
     border-radius: 5px;
     padding: 20px;
     cursor: pointer;
-box-shadow:  16px 16px 44px #0a0a0a, 
-             -16px -16px 44px #282a28;
+    box-shadow:  16px 16px 44px #0a0a0a, -16px -16px 44px #282a28;
     transition: 0.3s all ease-in-out;
     
+  }
+  .card-4 , .card-5{
+    position: relative;
+    left: 50%;
   }
   .card__content:hover{
     margin-top:-10px;
@@ -77,48 +67,38 @@ box-shadow:  16px 16px 44px #0a0a0a,
     margin: 50px auto;
   }
 
-  @media only screen and (max-width: 770px) and (min-width: 500px){
-      .card{
-        width: 90%;
-      }
-      .card__info{
-        font-size: 12px;
-      }
-      .card__header{
-        font-size: 18px;
-      }
+  @media only screen and (max-width: 768px) and (min-width: 500px){
+    .card {
+      width: 88%;
+      font-size: 12px;
+    }
+    .card-4 , .card-5{
+      position: relative;
+      left: 50%;
+    }
   }
 
   @media only screen and (max-width: 500px) and (min-width: 300px){
     .card{
       width: 60%;
-      margin-bottom: 35px;
+      margin-bottom: 15px;
+    }
+    .card-4 , .card-5{
+      position: unset;
     }
     .card__container{
         display: flex;
         flex-direction: column;
-        margin-top: 90px;
     }
     .container{
-        height: 180vh;
-    }
-    .card__info{
-      font-size: 11px;
+        height: 250vh;
     }
 }
 
-@media only screen and (max-width: 1100px) and (min-width: 800px){
-  .card__info{
-    font-size: 14px;
-  }
-  .header{
-    font-size: 32px;
-  }
-  .card__button{
-    position: relative;
-    bottom: 20px;
-  }
+@media screen and (min-width:770px) and (max-width:1024px){
   .card{
-    width: 80%;
+    width: 90%;
+    height: 90%;
+
   }
 }

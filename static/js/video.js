@@ -1,5 +1,12 @@
 const video = document.getElementById("video");
 
+
+const sendBtn=document.getElementById("sendData");
+
+
+
+let attendanceObj={};
+
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('http://127.0.0.1:5000/static/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('http://127.0.0.1:5000/static/models'),
@@ -18,8 +25,8 @@ function start() {
 }
 
 async function recognizeFaces() {
-  const labeledDescriptors = await loadLabeledImages();
-  const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.6);
+  const labeledDescriptors =await loadLabeledImages();
+  const faceMatcher =  new faceapi.FaceMatcher(labeledDescriptors, 0.6);
 
   video.addEventListener("play", () => {
     //Creating a canvas to add overlay video
@@ -47,38 +54,65 @@ async function recognizeFaces() {
         const drawBox = new faceapi.draw.DrawBox(box, {
           label: result.toString(),
         });
+
+      
+        attendanceObj[result._label]=false;
+        // document.body.append(result._label," is Present")
+        
         drawBox.draw(canvas);
       });
     }, 100);
   });
 }
+const user = {
 
-function loadLabeledImages() {
-  
-  const labels = ["57_Gal", "55_Alo", "56_Umang", "58_Kristen", "53_Emma"];
+  name: 'John Doe',
 
-  // const labels = [];
-  // let matching = async function(){
-  //   let match = await fetch('/arrayOfFiles/');
-  //   let data = await match.json();
-  //   return data.data;
-  // }
+  email: 'john.doe@example.com',
+
+  age: 25,
+
+  dob: '08/02/1989',
+
+  active: true
+};
+console.log(user);
+console.log(attendanceObj)
+
+
+const labels = [];
+let matching = async function(){
+  let match = await fetch('/arrayOfFiles/');
+  let data = await match.json();
+  // console.log(data.data)
+  return data.data;
+}
     
-  // matching().then(item => {
-  //   for (let index = 0; index < item.length; index++) {
-  //     labels.push(item[index]["name"]);
-  //   }
-  //   // console.log(labels);
-  // })
 
-  // console.log(labels);
+matching().then(item => {
+  for (let index = 0; index < item.length; index++) {
+   
+    labels.push(item[index].name);
+    attendanceObj[item[index].name]=true;
+    // console.log(typeof(item[index].name),labels.length)
+  }
+})
+// console.log(labels);
+// console.log(attendanceObj)
+
+
+function loadLabeledImages() { 
+
   return Promise.all(
+      
       labels.map(async (label)=>{
-        console.log(label)
+        // console.log(label,'in promise')
         
           const descriptions = []
           for(let i=1; i<2; i++) {
-              const img = await faceapi.fetchImage(`http://127.0.0.1:5000/static/labeled_images/${label}/${i}.jpg`)
+              const img = await faceapi.fetchImage(`http://127.0.0.1:5000/static/labeled_images/${label}/${i}.jpg`) || 
+              await faceapi.fetchImage(`http://127.0.0.1:5000/static/labeled_images/${label}/${i}.jpeg`) || 
+              await faceapi.fetchImage(`http://127.0.0.1:5000/static/labeled_images/${label}/${i}.png`);
               const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
               // console.log(label + i + JSON.stringify(detections))
               descriptions.push(detections.descriptor)
@@ -88,3 +122,16 @@ function loadLabeledImages() {
       })
   )
 }
+
+// console.log(labels);
+
+labels.map((item)=>{
+  console.log(item);
+  attendanceObj[item]=true;
+})
+sendBtn.addEventListener("click",()=>{
+  console.log(attendanceObj);
+  JSON.stringify(attendanceObj);
+  console.log(JSON.stringify(attendanceObj));
+  document.getElementById("attendance").value = JSON.stringify(attendanceObj);
+})

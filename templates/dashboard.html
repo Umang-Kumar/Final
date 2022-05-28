@@ -4,33 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AtEasy</title>
+    <title>AtEase</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/dashboard.css') }}">
     <script src="https://kit.fontawesome.com/edd4e6a249.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background: #2c302d;">
     <div class="container">
-      <h1 class="header">Admin's Dashboard</h1>
+      <h1 class="header" style="text-align: center;
+      margin-top: 50px;
+      color: white;">Admin's Dashboard</h1>
+        <button style="margin-left: 183vh;" class="logout" onclick="window.location.href='/logout/';">Logout</button>
         <div class="card__container">
-          <div class="card">
+          <div class="card" onclick="window.location.href='/addUser/';">
             <div class="card__content">
               <h3 class="card__header">Add a Pupil</h3>
               <p class="card__info">Go on! Add a new member, just a clear picture and their name, preety easy if you ask me.😎</p>
-              <button onclick="window.location.href='/addUser/';" class="card__button"><h5>Add🙂</h5></button>
+              <button class="card__button"><h5>Add🙂</h5></button>
             </div>
           </div>
-          <div class="card">
+          <div class="card" onclick="window.location.href='/video/';">
             <div class="card__content">
               <h3 class="card__header">Take Attendance</h3>
               <p class="card__info">Switches on your webcam and boom!! Let your pupils pass through. Easy Attendance.😎</p>
-              <button onclick="window.location.href='/video/';" class="card__button">Smile😊</button>
+              <button class="card__button">Smile😊</button>
             </div>
           </div>
-          <div class="card">
+          <div class="card" onclick="window.location.href='/gallery/';">
             <div class="card__content">
               <h3 class="card__header">Gallery</h3>
               <p class="card__info">Every pupil sits right here. Have a look, also delete them if it was a mistake in addition.😅</p>
-              <button onclick="window.location.href='/gallery/';" class="card__button">Binge😁</button>
+              <button class="card__button">Binge😁</button>
+            </div>
+          </div>
+          <!-- <div class="card card-4" onclick="window.location.href='/sheets/';">
+            <div class="card__content">
+              <h3 class="card__header">Records</h3>
+              <p class="card__info">Attendance sheets for you to go through. All pupils marked either present or absent. ✅</p>
+              <button class="card__button">Check👍</button>
+            </div>
+          </div>
+          <div class="card card-5">
+            <div class="card__content">
+              <h3 class="card__header">Card 3</h3>
+              <p class="card__info">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <button class="card__button">Read now</button> -->
             </div>
           </div>
         </div>
