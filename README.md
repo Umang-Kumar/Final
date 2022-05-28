@@ -15,5 +15,7 @@
   3. Gallery
  
 A) The add student endpoint is a page where the admin selects a photo of student whom face is to be recognized and marked. After selecting you also see a preview in case you selected a wrong image, add his roll no. and name in the specified format and submit. That's all.
+
 B) Take Attendance is pretty self-explanatory. This endpoint takes some time to switch on as it has to load face-api models, but after that it's smooth as butter. Switches on your webcam and takes note of students passing right past it. When you're done just submit it and a csv file of all the pupils with their state being true or false is generated in static/Attendances folder.
+
 C) Gallery as the name suggests is an endpoint where you keep track of all your pupils.
