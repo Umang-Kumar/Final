@@ -22,7 +22,6 @@ openssl~=1.1.1l
 cryptography~=3.4.8
 py~=1.10.0
 lxml~=4.6.3
-pillow~=8.4.0
 docutils~=0.17.1
 sphinx~=4.2.0
 tornado~=6.1
