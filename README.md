@@ -27,7 +27,6 @@ Also , I'm still developing, so will keep improving over time, open to ideas.
 Some screenshots to go through:
 ![Web capture_29-5-2022_18286_127 0 0 1](https://user-images.githubusercontent.com/76547661/170869873-cab125b1-aee9-41fe-bcba-b37676b521bb.jpeg)
 ![Web ca![Web capture_29-5-2022_183327_127 0 0 1](https://user-images.githubusercontent.com/76547661/170870162-99e5d9d0-2ef7-4eaa-bf8b-fd70bf6ca2db.jpeg)
-![Web capture_29-5-2022_183327_127 0 0 1](https://user-images.githubusercontent.com/76547661/170870257-794189d2-1410-47b8-a3d7-a1e02d157730.jpeg)
-
+![Web capture_29-5-2022_183024_127 0 0 1](https://user-images.githubusercontent.com/76547661/170870360-cd5622dc-2004-4e4f-87ac-28da99409dc1.jpeg)
 
 Arigatōgozaimashita;)
