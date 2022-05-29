@@ -3,6 +3,8 @@
 
  So, basically this face detection based attention system finds it's usage in traditional offline classes, where a lot of time and effort is wasted in marking attendance   of students/pupils. This web application can be used by an individual who wishes to save his time and energy, focusing on what is important to him and his pupils.
  
+ To get started with this web app clone repository in your desired directory, open app.py file, if you don't have the required modules (most of them are in requirements.txt) install them after every module is installed also see the tech-stack and download MongoDB so that it can store images and csv files. If everything is going well the app will start on your localhost and rest I've described below.
+ 
  The tech-stack which I used in this project are:
   1. Flask (Python Framework)
   2. HTML/CSS/JS
@@ -21,5 +23,11 @@ B) Take Attendance is pretty self-explanatory. This endpoint takes some time to 
 C) Gallery as the name suggests is an endpoint where you keep track of all your pupils.
 
 Also , I'm still developing, so will keep improving over time, open to ideas.
+
+Some screenshots to go through:
+![Web capture_29-5-2022_18286_127 0 0 1](https://user-images.githubusercontent.com/76547661/170869873-cab125b1-aee9-41fe-bcba-b37676b521bb.jpeg)
+![Web ca![Web capture_29-5-2022_183327_127 0 0 1](https://user-images.githubusercontent.com/76547661/170870162-99e5d9d0-2ef7-4eaa-bf8b-fd70bf6ca2db.jpeg)
+pture_29-5-2022_183024_127 0 0 1](https://user-images.githubusercontent.com/76547661/170870023-99c18d75-db0a-4f81-a362-84193d72c730.jpeg)
+
 
 Arigatōgozaimashita;)
