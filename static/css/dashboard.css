@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"); */
 *,
 *::before,
 *::after {
@@ -7,15 +7,53 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+body , .container , .label{
+  transform: background-color 2s linear ;
+}
 .container {
   position:absolute;
   width:100%;
   height:100vh;
   background: #2c302d;
 }
+.checkbox:checked + .label .ball{
+  transform: translateX(23px);
+}
+.ball{
+  background-color: black;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  transition: transform 0.2 linear ;
+}
+.toogle-button{
+  position: absolute;
+  display: flex;
+  top: 1%;
+  /* align-items: center; */
+  left: 86vw;
+}
+.label{
+  background-color: white;
+  display: flex;
+  /* flex-direction: column; */
+  border-radius: 50px;
+  position: relative;
+  height: 26px;
+  width: 50px;
+}
+.checkbox{
+  opacity: 0;
+  position:absolute;
+}
+
 .card {
   width: 60%;
   height: 80%;
+  margin-bottom: 8px;
   max-height: 300px;
   padding: auto;
   text-align: center;
@@ -44,6 +82,12 @@
     transition: 0.3s all ease-in-out;
     
   }
+  .header{
+    text-align: center;
+    font-weight: 700;
+    margin-top: 20px;
+    color: white;
+  }
   .card-4 , .card-5{
     position: relative;
     left: 50%;
@@ -67,18 +111,92 @@
     margin: 50px auto;
   }
 
-  @media only screen and (max-width: 768px) and (min-width: 500px){
+/* ============DARK MODE============ */
+
+  body.dark .ball{
+    background-color: white;
+  }
+  body.dark .container{
+    /* color: #fff; */
+    background-color: #fff;
+  }
+  body.dark .card__button{
+    color: black;
+  }
+  body.dark h3{
+    color: #000;
+  }
+  body.dark .header{
+    color: black;
+  }
+  body.dark .card{
+    box-shadow: 25px 25px 50px #e5e8e5, -25px -25px 50px #e5e8e5;
+    background: #ccc5c5;
+  }
+body.dark .card__content{
+  background: white;
+  box-shadow:  16px 16px 44px #f5f1f1, -16px -16px 44px #f5f1f1;
+}
+
+body.dark .card__info{
+  color: black;
+}
+body.dark .label{
+  background-color: black;
+}
+body.dark .logout{
+  color: black;
+    background-color: white;
+    border: 2px solid;
+}
+  @media only screen and (max-width: 800px) and (min-width: 500px){
+    body{
+      height: 160vh;
+      background: #2c302d;
+    }
+    body.dark{
+      height: 160vh;
+      background: white;
+    }
     .card {
-      width: 88%;
+      width: 52%;
       font-size: 12px;
     }
     .card-4 , .card-5{
       position: relative;
       left: 50%;
     }
+    .header{
+      text-align: center;
+      color: white;
+      margin-bottom: 160px;
+      margin-top: 15px;
+      }
+      body .logout-div{
+        top: 1%;
+        left: 10vw;
+      }
+      body .toogle-button{
+        left: 86vw;
+      }
+      .card__container{
+        margin-top: 22%;
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+      }
   }
 
   @media only screen and (max-width: 500px) and (min-width: 300px){
+    body{
+      height: 160vh;
+      background:#2c302d ;
+      margin-top: 35px;
+    }
+    body.dark{
+      background: white;
+    }
     .card{
       width: 60%;
       margin-bottom: 15px;
@@ -87,18 +205,114 @@
       position: unset;
     }
     .card__container{
-        display: flex;
-        flex-direction: column;
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      margin-left: -80px;
+      width: 149vw;
+      align-items: center;
     }
     .container{
-        height: 250vh;
+      height: 170vh;
+      position: absolute;
+      left: 10%;
+    }
+    .header{
+      text-align: center;
+    color: white;
+    margin-bottom: 18px;
+    margin-top: 47px;
+    margin-left: 18px;
+    }
+    .logout-div{
+      top: 5%;
+      left: 79%;
+    } 
+    .toogle-button{
+      left: 3vw;
+    }
+    .logout-div{
+      left: 100vw;
     }
 }
 
 @media screen and (min-width:770px) and (max-width:1024px){
+  .card__container{
+    width: 95%;
+  }
   .card{
     width: 90%;
     height: 90%;
-
   }
+  body .logout-div{
+    top: 1%;
+    left: 75vw;
+  }
+  body .toogle-button{
+    left: 86vw;
+  }
+  .header{
+    text-align: center;
+    color: white;
+    margin-bottom: 18px;
+    margin-top: 15px;
+    }
 }
+
+.logout-div{
+    position: absolute;
+    display: flex;
+    /* float: left; */
+    top: 1%;
+    left: 80vw;
+}
+.logout{
+    border-radius: 5px;
+    width: 65px;
+    height: 29px;
+    /* background-color: blue; */
+    border: none;
+    color: white;
+    background-color: #1f75c4;
+}
+
+.logout:hover{
+  background-color: blue;
+  cursor: pointer;
+}
+
+/* 770 1024
+.logout-div{
+  top: 5%;
+  left: 79%;
+}
+.header{
+  text-align: center;
+  color: white;
+  margin-bottom: 18px;
+  margin-top: 15px;
+  } */
+
+  /* 300 500
+  .header{
+    text-align: center;
+    color: white;
+    margin-bottom: 18px;
+    margin-top: 15px;
+    }
+    .logout-div{
+      top: 5%;
+      left: 79%;
+    } */
+
+    /* 500 800
+    .header{
+      text-align: center;
+      color: white;
+      margin-bottom: 18px;
+      margin-top: 15px;
+      }
+      .logout-div{
+        top: 0%;
+        left: 0%;
+      } */

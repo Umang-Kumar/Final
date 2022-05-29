@@ -64,20 +64,8 @@ async function recognizeFaces() {
     }, 100);
   });
 }
-const user = {
 
-  name: 'John Doe',
-
-  email: 'john.doe@example.com',
-
-  age: 25,
-
-  dob: '08/02/1989',
-
-  active: true
-};
-console.log(user);
-console.log(attendanceObj)
+// console.log(attendanceObj)
 
 
 const labels = [];
@@ -94,11 +82,9 @@ matching().then(item => {
    
     labels.push(item[index].name);
     attendanceObj[item[index].name]=true;
-    // console.log(typeof(item[index].name),labels.length)
+   
   }
 })
-// console.log(labels);
-// console.log(attendanceObj)
 
 
 function loadLabeledImages() { 
@@ -106,7 +92,6 @@ function loadLabeledImages() {
   return Promise.all(
       
       labels.map(async (label)=>{
-        // console.log(label,'in promise')
         
           const descriptions = []
           for(let i=1; i<2; i++) {
@@ -123,7 +108,7 @@ function loadLabeledImages() {
   )
 }
 
-// console.log(labels);
+
 
 labels.map((item)=>{
   console.log(item);
@@ -135,3 +120,15 @@ sendBtn.addEventListener("click",()=>{
   console.log(JSON.stringify(attendanceObj));
   document.getElementById("attendance").value = JSON.stringify(attendanceObj);
 })
+
+
+window.onload=function(){
+    // -- put your code here
+    const checkbox = document.getElementById("checkbox");
+
+  checkbox.addEventListener("change" , ()=>{
+    document.body.classList.toggle("dark");
+    // console.log("hello");
+  })
+
+}

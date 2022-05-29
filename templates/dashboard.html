@@ -7,13 +7,12 @@
     <title>AtEase</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/dashboard.css') }}">
     <script src="https://kit.fontawesome.com/edd4e6a249.js" crossorigin="anonymous"></script>
+    <!-- <script</script> -->
+    <script src="{{ url_for('static',filename='js/dashboard.js') }}"></script>
 </head>
-<body style="background: #2c302d;">
+<body>
     <div class="container">
-      <h1 class="header" style="text-align: center;
-      margin-top: 50px;
-      color: white;">Admin's Dashboard</h1>
-        <button style="margin-left: 183vh;" class="logout" onclick="window.location.href='/logout/';">Logout</button>
+      <h1 class="header">Admin's Dashboard</h1>
         <div class="card__container">
           <div class="card" onclick="window.location.href='/addUser/';">
             <div class="card__content">
@@ -32,23 +31,20 @@
           <div class="card" onclick="window.location.href='/gallery/';">
             <div class="card__content">
               <h3 class="card__header">Gallery</h3>
-              <p class="card__info">Every pupil sits right here. Have a look😅</p>
+              <p class="card__info">Every pupil sits right here. Have a look, also delete them if it was a mistake in addition.😅</p>
               <button class="card__button">Binge😁</button>
             </div>
           </div>
-          <!-- <div class="card card-4" onclick="window.location.href='/sheets/';">
-            <div class="card__content">
-              <h3 class="card__header">Records</h3>
-              <p class="card__info">Attendance sheets for you to go through. All pupils marked either present or absent. ✅</p>
-              <button class="card__button">Check👍</button>
-            </div>
+          <div class="toogle-button">
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="label">
+              <div class="ball"></div>
+            </label>
           </div>
-          <div class="card card-5">
-            <div class="card__content">
-              <h3 class="card__header">Card 3</h3>
-              <p class="card__info">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-              <button class="card__button">Read now</button> -->
-            </div>
+          <div class="logout-div">
+            <button class="logout" onclick="window.location.href='/logout/';">Logout</button>
+          </div>
+          </div>
           </div>
         </div>
       </div>

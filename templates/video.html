@@ -12,15 +12,18 @@
         <link rel="stylesheet" href="{{ url_for('static',filename='css/video.css') }}">
     </head>
 
-    <body style="background: #2c302d;">
-        <h1 style="color: white;
-        position: absolute;
-        margin-top: -40%;">Video Attendance</h1>
-        <video id="video" width="720px" height="560px" controls muted></video>
-        
+    <body>
+        <h1 class="header-video">Video Attendance</h1>
+        <video id="video" width="720px" height="560px" autoplay muted></video>
+        <div class="toogle-button">
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="label">
+              <div class="ball"></div>
+            </label>
+        </div>
         <form method="POST" enctype="multipart/form-data">
             <input type="hidden" id="attendance" name="attendance" >
-            <div style="position: absolute; top: 89%;" class="text-center">
+            <div class="text-center">
                 <button id="sendData" type="submit" class="btn btn-primary m-3">
                     Done with Attendance.👍
                 </button>

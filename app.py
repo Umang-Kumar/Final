@@ -135,15 +135,6 @@ def gallery():
     return render_template("gallery.html", gallery=mongo.db.gallery.find())
 
 
-# A webpage to show all the pupils added
-@app.route("/sheets/")
-def sheets():
-    cursor = mongo.db.sheets.find()
-    for sheet in cursor:
-        print(sheet)
-    return render_template("Sheet.html", gallery=mongo.db.sheets.find())
-
-
 ########################
 # Making a labeled folder for face matching
 def changes():
